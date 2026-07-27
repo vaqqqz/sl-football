@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Чемпионат Свинленда по футболу</title>
+  <meta name="description" content="Официальный сайт Чемпионата Свинленда по футболу на Minecraft-сервере. Правила, расписание плей-офф, команды, билеты и контакты.">
+  <meta name="keywords" content="Свинленд, чемпионат, футбол, Minecraft, турнир, плей-офф">
+  <meta name="author" content="Чемпионат Свинленда по футболу">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Чемпионат Свинленда по футболу">
+  <meta property="og:description" content="Официальный сайт чемпионата Свинленда по футболу на Minecraft-сервере.">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:locale" content="ru_RU">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== ШАПКА / НАВИГАЦИЯ ===================== -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="#top" class="logo-link" aria-label="На главную страницу">
+        <img src="assets/logo.png" alt="Логотип Чемпионата Свинленда по футболу" class="logo-img">
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li><a href="#rules" class="nav-link">Правила</a></li>
+          <li><a href="#schedule" class="nav-link">Расписание</a></li>
+          <li><a href="#teams" class="nav-link">Команды</a></li>
+          <li><a href="#tickets" class="nav-link">Билеты</a></li>
+          <li><a href="#contacts" class="nav-link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <button class="burger-btn" id="burger-btn" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </div>
+
+    <!-- Мобильное меню -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация">
+      <ul class="mobile-nav-list">
+        <li><a href="#rules" class="mobile-nav-link">Правила</a></li>
+        <li><a href="#schedule" class="mobile-nav-link">Расписание</a></li>
+        <li><a href="#teams" class="mobile-nav-link">Команды</a></li>
+        <li><a href="#tickets" class="mobile-nav-link">Билеты</a></li>
+        <li><a href="#contacts" class="mobile-nav-link">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">В каждый дом приходит чемпионат!</h1>
+        <p class="hero-subtitle">Сайт Чемпионата Свинленда по футболу</p>
+        <div class="hero-divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ===================== ПРАВИЛА ===================== -->
+    <section class="section" id="rules">
+      <div class="section-inner fade-in-section">
+        <h2 class="section-title">Правила чемпионата</h2>
+        <article class="panel-card rules-card">
+          <!-- ВСТАВИТЬ РЕГЛАМЕНТ -->
+          <p>Здесь будет расположен регламент чемпионата.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== РАСПИСАНИЕ / ПЛЕЙ-ОФФ ===================== -->
+    <section class="section section-alt" id="schedule">
+      <div class="section-inner fade-in-section">
+        <h2 class="section-title">Расписание</h2>
+
+        <div class="bracket-scroll">
+          <div class="bracket" role="img" aria-label="Турнирная сетка плей-офф чемпионата">
+
+            <!-- ---------- ЧЕТВЕРТЬФИНАЛЫ ---------- -->
+            <div class="bracket-round" id="quarterfinals">
+              <h3 class="bracket-round-title">Четвертьфиналы</h3>
+
+              <div class="bracket-matches">
+                <article class="match-card">
+                  <div class="match-team">
+                    <img src="assets/teams/team1.png" alt="Команда 1" class="match-team-logo">
+                    <span class="match-team-name">Команда 1</span>
+                  </div>
+                  <span class="match-vs">vs</span>
+                  <div class="match-team">
+                    <img src="assets/teams/team2.png" alt="Команда 2" class="match-team-logo">
+                    <span class="match-team-name">Команда 2</span>
+                  </div>
+                </article>
+
+                <article class="match-card">
+                  <div class="match-team">
+                    <img src="assets/teams/team3.png" alt="Команда 3" class="match-team-logo">
+                    <span class="match-team-name">Команда 3</span>
+                  </div>
+                  <span class="match-vs">vs</span>
+                  <div class="match-team">
+                    <img src="assets/teams/team4.png" alt="Команда 4" class="match-team-logo">
+                    <span class="match-team-name">Команда 4</span>
+                  </div>
+                </article>
+
+                <article class="match-card">
+                  <div class="match-team">
+                    <img src="assets/teams/team5.png" alt="Команда 5" class="match-team-logo">
+                    <span class="match-team-name">Команда 5</span>
+                  </div>
+                  <span class="match-vs">vs</span>
+                  <div class="match-team">
+                    <img src="assets/teams/team6.png" alt="Команда 6" class="match-team-logo">
+                    <span class="match-team-name">Команда 6</span>
+                  </div>
+                </article>
+
+                <article class="match-card">
+                  <div class="match-team">
+                    <img src="assets/teams/team7.png" alt="Команда 7" class="match-team-logo">
+                    <span class="match-team-name">Команда 7</span>
+                  </div>
+                  <span class="match-vs">vs</span>
+                  <div class="match-team">
+                    <img src="assets/teams/team8.png" alt="Команда 8" class="match-team-logo">
+                    <span class="match-team-name">Команда 8</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- ---------- СОЕДИНИТЕЛЬНЫЕ ЛИНИИ QF -> SF ---------- -->
+            <div class="bracket-connectors" aria-hidden="true">
+              <div class="connector connector-pair"></div>
+              <div class="connector connector-pair"></div>
+            </div>
+
+            <!-- ---------- ПОЛУФИНАЛЫ ---------- -->
+            <div class="bracket-round" id="semifinals">
+              <h3 class="bracket-round-title">Полуфиналы</h3>
+
+              <div class="bracket-matches bracket-matches-spaced">
+                <article class="match-card">
+                  <div class="match-team">
+                    <img src="assets/teams/team1.png" alt="Победитель четвертьфинала 1" class="match-team-logo">
+                    <span class="match-team-name">Победитель ЧФ 1</span>
+                  </div>
+                  <span class="match-vs">vs</span>
+                  <div class="match-team">
+                    <img src="assets/teams/team3.png" alt="Победитель четвертьфинала 2" class="match-team-logo">
+                    <span class="match-team-name">Победитель ЧФ 2</span>
+                  </div>
+                </article>
+
+                <article class="match-card">
+                  <div class="match-team">
+                    <img src="assets/teams/team5.png" alt="Победитель четвертьфинала 3" class="match-team-logo">
+                    <span class="match-team-name">Победитель ЧФ 3</span>
+                  </div>
+                  <span class="match-vs">vs</span>
+                  <div class="match-team">
+                    <img src="assets/teams/team7.png" alt="Победитель четвертьфинала 4" class="match-team-logo">
+                    <span class="match-team-name">Победитель ЧФ 4</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- ---------- СОЕДИНИТЕЛЬНЫЕ ЛИНИИ SF -> FINAL ---------- -->
+            <div class="bracket-connectors bracket-connectors-final" aria-hidden="true">
+              <div class="connector connector-final"></div>
+            </div>
+
+            <!-- ---------- ФИНАЛ ---------- -->
+            <div class="bracket-round bracket-round-final" id="final">
+              <h3 class="bracket-round-title bracket-final-label">ФИНАЛ</h3>
+
+              <div class="bracket-matches bracket-matches-final">
+                <article class="match-card match-card-final">
+                  <div class="match-team">
+                    <img src="assets/teams/team1.png" alt="Финалист 1" class="match-team-logo match-team-logo-final">
+                    <span class="match-team-name">Финалист 1</span>
+                  </div>
+                  <span class="match-vs match-vs-final">vs</span>
+                  <div class="match-team">
+                    <img src="assets/teams/team5.png" alt="Финалист 2" class="match-team-logo match-team-logo-final">
+                    <span class="match-team-name">Финалист 2</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== КОМАНДЫ ===================== -->
+    <section class="section" id="teams">
+      <div class="section-inner fade-in-section">
+        <h2 class="section-title">Команды</h2>
+
+        <div class="teams-grid">
+
+          <!-- Карточка команды 1 -->
+          <article class="team-card">
+            <img src="assets/teams/team1.png" alt="Логотип команды 1" class="team-card-logo">
+            <!-- Название команды -->
+            <h3 class="team-card-name">Команда 1</h3>
+            <!-- Домашний стадион -->
+            <p class="team-card-stadium">Стадион: Свин-Арена №1</p>
+            <!-- Главный тренер -->
+            <p class="team-card-coach">Главный тренер: Иван Иванов</p>
+            <!-- Игроки -->
+            <ul class="team-card-players">
+              <li>Игрок 1</li>
+              <li>Игрок 2</li>
+              <li>Игрок 3</li>
+              <li>Игрок 4</li>
+              <li>Игрок 5</li>
+            </ul>
+          </article>
+
+          <!-- Карточка команды 2 -->
+          <article class="team-card">
+            <img src="assets/teams/team2.png" alt="Логотип команды 2" class="team-card-logo">
+            <!-- Название команды -->
+            <h3 class="team-card-name">Команда 2</h3>
+            <!-- Домашний стадион -->
+            <p class="team-card-stadium">Стадион: Свин-Арена №2</p>
+            <!-- Главный тренер -->
+            <p class="team-card-coach">Главный тренер: Пётр Петров</p>
+            <!-- Игроки -->
+            <ul class="team-card-players">
+              <li>Игрок 1</li>
+              <li>Игрок 2</li>
+              <li>Игрок 3</li>
+              <li>Игрок 4</li>
+              <li>Игрок 5</li>
+            </ul>
+          </article>
+
+          <!-- Карточка команды 3 -->
+          <article class="team-card">
+            <img src="assets/teams/team3.png" alt="Логотип команды 3" class="team-card-logo">
+            <!-- Название команды -->
+            <h3 class="team-card-name">Команда 3</h3>
+            <!-- Домашний стадион -->
+            <p class="team-card-stadium">Стадион: Свин-Арена №3</p>
+            <!-- Главный тренер -->
+            <p class="team-card-coach">Главный тренер: Сергей Сергеев</p>
+            <!-- Игроки -->
+            <ul class="team-card-players">
+              <li>Игрок 1</li>
+              <li>Игрок 2</li>
+              <li>Игрок 3</li>
+              <li>Игрок 4</li>
+              <li>Игрок 5</li>
+            </ul>
+          </article>
+
+          <!-- Карточка команды 4 -->
+          <article class="team-card">
+            <img src="assets/teams/team4.png" alt="Логотип команды 4" class="team-card-logo">
+            <!-- Название команды -->
+            <h3 class="team-card-name">Команда 4</h3>
+            <!-- Домашний стадион -->
+            <p class="team-card-stadium">Стадион: Свин-Арена №4</p>
+            <!-- Главный тренер -->
+            <p class="team-card-coach">Главный тренер: Алексей Алексеев</p>
+            <!-- Игроки -->
+            <ul class="team-card-players">
+              <li>Игрок 1</li>
+              <li>Игрок 2</li>
+              <li>Игрок 3</li>
+              <li>Игрок 4</li>
+              <li>Игрок 5</li>
+            </ul>
+          </article>
+
+          <!-- Карточка команды 5 -->
+          <article class="team-card">
+            <img src="assets/teams/team5.png" alt="Логотип команды 5" class="team-card-logo">
+            <!-- Название команды -->
+            <h3 class="team-card-name">Команда 5</h3>
+            <!-- Домашний стадион -->
+            <p class="team-card-stadium">Стадион: Свин-Арена №5</p>
+            <!-- Главный тренер -->
+            <p class="team-card-coach">Главный тренер: Дмитрий Дмитриев</p>
+            <!-- Игроки -->
+            <ul class="team-card-players">
+              <li>Игрок 1</li>
+              <li>Игрок 2</li>
+              <li>Игрок 3</li>
+              <li>Игрок 4</li>
+              <li>Игрок 5</li>
+            </ul>
+          </article>
+
+          <!-- Карточка команды 6 -->
+          <article class="team-card">
+            <img src="assets/teams/team6.png" alt="Логотип команды 6" class="team-card-logo">
+            <!-- Название команды -->
+            <h3 class="team-card-name">Команда 6</h3>
+            <!-- Домашний стадион -->
+            <p class="team-card-stadium">Стадион: Свин-Арена №6</p>
+            <!-- Главный тренер -->
+            <p class="team-card-coach">Главный тренер: Николай Николаев</p>
+            <!-- Игроки -->
+            <ul class="team-card-players">
+              <li>Игрок 1</li>
+              <li>Игрок 2</li>
+              <li>Игрок 3</li>
+              <li>Игрок 4</li>
+              <li>Игрок 5</li>
+            </ul>
+          </article>
+
+          <!-- Карточка команды 7 -->
+          <article class="team-card">
+            <img src="assets/teams/team7.png" alt="Логотип команды 7" class="team-card-logo">
+            <!-- Название команды -->
+            <h3 class="team-card-name">Команда 7</h3>
+            <!-- Домашний стадион -->
+            <p class="team-card-stadium">Стадион: Свин-Арена №7</p>
+            <!-- Главный тренер -->
+            <p class="team-card-coach">Главный тренер: Максим Максимов</p>
+            <!-- Игроки -->
+            <ul class="team-card-players">
+              <li>Игрок 1</li>
+              <li>Игрок 2</li>
+              <li>Игрок 3</li>
+              <li>Игрок 4</li>
+              <li>Игрок 5</li>
+            </ul>
+          </article>
+
+          <!-- Карточка команды 8 -->
+          <article class="team-card">
+            <img src="assets/teams/team8.png" alt="Логотип команды 8" class="team-card-logo">
+            <!-- Название команды -->
+            <h3 class="team-card-name">Команда 8</h3>
+            <!-- Домашний стадион -->
+            <p class="team-card-stadium">Стадион: Свин-Арена №8</p>
+            <!-- Главный тренер -->
+            <p class="team-card-coach">Главный тренер: Артём Артёмов</p>
+            <!-- Игроки -->
+            <ul class="team-card-players">
+              <li>Игрок 1</li>
+              <li>Игрок 2</li>
+              <li>Игрок 3</li>
+              <li>Игрок 4</li>
+              <li>Игрок 5</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== БИЛЕТЫ ===================== -->
+    <section class="section section-alt" id="tickets">
+      <div class="section-inner fade-in-section">
+        <h2 class="section-title">Билеты</h2>
+        <article class="panel-card tickets-card">
+          <p>Здесь будет расположена информация о билетах на матчи чемпионата, стоимости и способах покупки.</p>
+          <!-- ВРЕМЯ ПРОДАЖИ -->
+          <div class="tickets-time-block">
+            <span class="tickets-time-label">Продажа билетов начинается:</span>
+            <span class="tickets-time-value">18:00 МСК</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== КОНТАКТЫ ===================== -->
+    <section class="section" id="contacts">
+      <div class="section-inner fade-in-section">
+        <h2 class="section-title">Контакты</h2>
+
+        <div class="contacts-buttons">
+          <a href="https://t.me/example" class="contact-btn contact-btn-telegram" target="_blank" rel="noopener noreferrer" aria-label="Телеграм-канал чемпионата">
+            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M21.05 3.53 2.98 10.6c-1.24.5-1.23 1.19-.23 1.5l4.63 1.45 1.79 5.6c.22.6.11.84.75.84.5 0 .72-.23 1-.5l2.4-2.34 4.7 3.47c.87.48 1.5.23 1.72-.8l3.12-14.7c.3-1.27-.48-1.85-1.31-1.59Zm-11.5 10.4-1.13-3.87 8.6-5.4c.16-.1.35-.05.2.09l-7.67 9.18Z"/>
+            </svg>
+            <span>Telegram</span>
+          </a>
+
+          <a href="https://discord.gg/example" class="contact-btn contact-btn-discord" target="_blank" rel="noopener noreferrer" aria-label="Дискорд-сервер чемпионата">
+            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M20.32 5.36a17.5 17.5 0 0 0-4.32-1.34c-.19.34-.4.8-.55 1.16a16.3 16.3 0 0 0-4.9 0 8.4 8.4 0 0 0-.56-1.16 17.4 17.4 0 0 0-4.32 1.34C2.9 9 2.24 12.55 2.55 16.06a17.6 17.6 0 0 0 5.36 2.72c.43-.59.82-1.22 1.15-1.88a11 11 0 0 1-1.82-.88c.15-.11.3-.23.45-.35a12.5 12.5 0 0 0 10.62 0c.15.12.3.24.44.35-.57.34-1.18.63-1.82.88.33.66.72 1.29 1.15 1.88a17.5 17.5 0 0 0 5.36-2.72c.37-4.07-.63-7.58-2.72-10.7ZM9.68 13.98c-.9 0-1.63-.83-1.63-1.85s.72-1.85 1.63-1.85c.92 0 1.65.84 1.63 1.85 0 1.02-.71 1.85-1.63 1.85Zm5.64 0c-.9 0-1.63-.83-1.63-1.85s.72-1.85 1.63-1.85c.92 0 1.65.84 1.63 1.85 0 1.02-.71 1.85-1.63 1.85Z"/>
+            </svg>
+            <span>Discord</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== ПОДВАЛ ===================== -->
+  <footer class="site-footer">
+    <p class="footer-title">Чемпионат Свинленда по футболу</p>
+    <p class="footer-copyright">© 2026</p>
+    <p class="footer-note">Создано для сообщества Minecraft</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

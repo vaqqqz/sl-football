@@ -1,0 +1,646 @@
+/* =========================================================
+   Чемпионат Свинленда по футболу — стили
+   Стиль: квадратный форум начала 2010-х в современной обработке
+   ========================================================= */
+
+/* ---------- Переменные ---------- */
+:root {
+  --color-bg: #0B1A41;
+  --color-card: #10275d;
+  --color-accent: #1478f9;
+  --color-text: #f1f5ff;
+  --color-text-secondary: #c8d6ff;
+  --color-border: rgba(255, 255, 255, 0.12);
+
+  --radius-sm: 4px;
+  --radius-none: 0;
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  --font-main: 'Inter', 'Segoe UI', 'IBM Plex Sans', -apple-system, sans-serif;
+
+  --header-height: 72px;
+  --transition-fast: 0.18s ease;
+  --transition-med: 0.3s ease;
+}
+
+/* ---------- Сброс ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Видимый фокус для доступности */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Шапка / навигация ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-card);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: var(--header-height);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+}
+
+.main-nav {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 4px;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--color-text);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Кнопка-гамбургер (скрыта на десктопе) */
+.burger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.burger-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 0 auto;
+  background-color: var(--color-text);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.burger-btn.is-open .burger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burger-btn.is-open .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-btn.is-open .burger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Мобильное меню */
+.mobile-nav {
+  max-height: 0;
+  overflow: hidden;
+  background-color: var(--color-card);
+  border-top: 1px solid transparent;
+  transition: max-height var(--transition-med), border-color var(--transition-med);
+}
+
+.mobile-nav.is-open {
+  max-height: 400px;
+  border-top: 1px solid var(--color-border);
+}
+
+.mobile-nav-list {
+  padding: 8px 24px 16px;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 12px 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible {
+  color: var(--color-accent);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-inner {
+  max-width: 900px;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.hero-divider {
+  width: 120px;
+  height: 3px;
+  background-color: var(--color-accent);
+  margin: 32px auto 0;
+}
+
+/* ---------- Общие секции ---------- */
+.section {
+  padding: 96px 24px;
+}
+
+.section-alt {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  margin-bottom: 32px;
+  border-left: 4px solid var(--color-accent);
+  padding-left: 16px;
+}
+
+/* Появление секций при прокрутке */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Панельная карточка (правила / билеты) ---------- */
+.panel-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  padding: 40px;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.rules-card {
+  min-height: 160px;
+}
+
+/* ---------- Билеты ---------- */
+.tickets-time-block {
+  margin-top: 28px;
+  padding: 24px;
+  background-color: rgba(20, 120, 249, 0.08);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tickets-time-label {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.tickets-time-value {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--color-accent);
+}
+
+/* ---------- Сетка плей-офф ---------- */
+.bracket-scroll {
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.bracket {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: 960px;
+}
+
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 220px;
+}
+
+.bracket-round-title {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bracket-matches {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.bracket-matches-spaced {
+  gap: 120px;
+}
+
+.bracket-matches-final {
+  justify-content: center;
+  height: 100%;
+}
+
+.match-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.match-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.match-team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.match-team-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.match-team-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.match-vs {
+  align-self: center;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Соединительные линии между раундами */
+.bracket-connectors {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 60px;
+  align-self: stretch;
+  padding: 40px 0;
+}
+
+.connector {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  position: relative;
+}
+
+.connector-final {
+  width: 100%;
+}
+
+.bracket-connectors-final {
+  justify-content: center;
+}
+
+/* Финал — больше пространства и крупнее карточка */
+.bracket-round-final {
+  min-width: 280px;
+}
+
+.bracket-final-label {
+  font-size: 1.6rem;
+  color: var(--color-accent);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.match-card-final {
+  padding: 32px;
+  gap: 20px;
+  border: 2px solid var(--color-accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.match-team-logo-final {
+  width: 48px;
+  height: 48px;
+}
+
+.match-vs-final {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* ---------- Команды ---------- */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.team-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  text-align: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent);
+}
+
+.team-card-logo {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 16px;
+  border-radius: var(--radius-sm);
+}
+
+.team-card-name {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.team-card-stadium,
+.team-card-coach {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}
+
+.team-card-players {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ---------- Контакты ---------- */
+.contacts-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex: 1 1 220px;
+  padding: 22px 32px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.contact-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.contact-btn-telegram:hover,
+.contact-btn-telegram:focus-visible {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+.contact-btn-discord:hover,
+.contact-btn-discord:focus-visible {
+  background-color: #5865f2;
+  border-color: #5865f2;
+  transform: translateY(-3px);
+}
+
+/* ---------- Подвал ---------- */
+.site-footer {
+  padding: 48px 24px;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-card);
+}
+
+.footer-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.footer-copyright {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.footer-note {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+/* =========================================================
+   Адаптивность
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .teams-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+  }
+
+  .burger-btn {
+    display: flex;
+  }
+
+  .section {
+    padding: 64px 20px;
+  }
+
+  .hero {
+    min-height: 60vh;
+    padding: 64px 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .teams-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contacts-buttons {
+    flex-direction: column;
+  }
+
+  .panel-card {
+    padding: 24px;
+  }
+
+  .bracket {
+    min-width: 760px;
+  }
+}
+
+/* Уважение к пользователям с уменьшенным движением */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-in-section,
+  .nav-link::after,
+  .team-card,
+  .contact-btn,
+  .match-card {
+    transition: none;
+  }
+}
