@@ -409,6 +409,22 @@ button:focus-visible {
   letter-spacing: 0.08em;
 }
 
+.match-date {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.match-date-final {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
 /* Соединительные линии между раундами */
 .bracket-connectors {
   display: flex;
