@@ -1,54 +1,75 @@
-/* =========================================================
-   Чемпионат Свинленда по футболу — стили
-   Стиль: квадратный форум начала 2010-х в современной обработке
-   ========================================================= */
+/* ==========================================================================
+   ЧЕМПИОНАТ СВИНЛЕНДА ПО ФУТБОЛУ — СТИЛИ
+   Структура файла:
+   1. Переменные и сброс
+   2. Общие утилиты
+   3. Шапка / навигация
+   4. Главный экран (hero)
+   5. Общие стили секций
+   6. Раздел «Правила»
+   7. Раздел «Расписание» (турнирная сетка)
+   8. Раздел «Команды»
+   9. Раздел «Билеты»
+   10. Раздел «Контакты»
+   11. Подвал
+   12. Кнопка «наверх»
+   13. Анимации
+   14. Адаптивность
+   ========================================================================== */
 
-/* ---------- Переменные ---------- */
+/* ---------- 1. Переменные и сброс ---------- */
 :root {
+  /* Базовая палитра */
   --color-bg: #0B1A41;
-  --color-card: #10275d;
-  --color-accent: #1478f9;
-  --color-text: #f1f5ff;
-  --color-text-secondary: #c8d6ff;
-  --color-border: rgba(255, 255, 255, 0.12);
+  --color-bg-alt: #081432;      /* чуть темнее для карточек/секций */
+  --color-bg-header: #08133199; /* панель навигации с прозрачностью */
+  --color-text: #F1F5FF;
+  --color-text-muted: #AEB9DA;
+  --color-accent: #1478F9;
+  --color-accent-hover: #4A9BFF;
+  --color-border: #1E2C57;
 
-  --radius-sm: 4px;
-  --radius-none: 0;
+  /* Типографика */
+  --font-main: 'Manrope', 'Segoe UI', Arial, sans-serif;
 
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.45);
+  /* Форма */
+  --radius-sm: 6px;
+  --radius-xs: 4px;
 
-  --font-main: 'Inter', 'Segoe UI', 'IBM Plex Sans', -apple-system, sans-serif;
+  /* Отступы */
+  --gap-section: clamp(64px, 9vw, 128px);
+  --container-width: 1200px;
 
-  --header-height: 72px;
-  --transition-fast: 0.18s ease;
-  --transition-med: 0.3s ease;
+  /* Скорости анимаций */
+  --t-fast: 150ms;
+  --t-medium: 300ms;
+  --t-slow: 550ms;
 }
 
-/* ---------- Сброс ---------- */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--header-height);
+  scroll-padding-top: 84px;
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-main);
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 img {
-  display: block;
   max-width: 100%;
+  display: block;
 }
 
 a {
@@ -56,40 +77,97 @@ a {
   text-decoration: none;
 }
 
-ul {
+ul, ol {
   list-style: none;
 }
 
-h1, h2, h3 {
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* ---------- 2. Общие утилиты ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-sm);
+  transition: transform var(--t-fast) ease, background-color var(--t-medium) ease, box-shadow var(--t-medium) ease;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.section-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 800;
-  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 48px;
 }
 
-/* Видимый фокус для доступности */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+/* Появление секций при прокрутке */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--t-slow) ease, transform var(--t-slow) ease;
 }
 
-/* ---------- Шапка / навигация ---------- */
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 3. Шапка / навигация ---------- */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
-  background-color: var(--color-card);
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--color-bg-header);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
 }
 
 .header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  height: var(--header-height);
-  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 76px;
 }
 
 .logo-link {
@@ -99,238 +177,210 @@ button:focus-visible {
 }
 
 .logo-img {
-  height: 50px;
+  height: 34px;
   width: auto;
 }
 
-.main-nav {
+.main-nav .nav-list {
   display: flex;
-}
-
-.nav-list {
-  display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 40px;
 }
 
 .nav-link {
   position: relative;
-  display: inline-block;
-  padding: 10px 16px;
   font-size: 15px;
   font-weight: 600;
-  color: var(--color-text-secondary);
-  border-radius: var(--radius-sm);
-  transition: color var(--transition-fast);
+  color: var(--color-text-muted);
+  padding: 8px 0;
+  transition: color var(--t-medium) ease;
 }
 
 .nav-link::after {
   content: "";
   position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 4px;
+  left: 0;
+  bottom: 0;
+  width: 0;
   height: 2px;
   background-color: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition-fast);
+  transition: width var(--t-medium) ease;
 }
 
 .nav-link:hover,
-.nav-link:focus-visible {
+.nav-link:focus-visible,
+.nav-link.active {
   color: var(--color-text);
 }
 
 .nav-link:hover::after,
-.nav-link:focus-visible::after {
-  transform: scaleX(1);
+.nav-link:focus-visible::after,
+.nav-link.active::after {
+  width: 100%;
 }
 
-/* Кнопка-гамбургер (скрыта на десктопе) */
-.burger-btn {
+/* Бургер-меню (скрыт на десктопе) */
+.burger {
   display: none;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 5px;
   width: 40px;
   height: 40px;
-  background: transparent;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
+  z-index: 1100;
 }
 
-.burger-line {
+.burger span {
   display: block;
-  width: 20px;
+  width: 22px;
   height: 2px;
-  margin: 0 auto;
   background-color: var(--color-text);
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  transition: transform var(--t-medium) ease, opacity var(--t-medium) ease;
 }
 
-.burger-btn.is-open .burger-line:nth-child(1) {
+.burger.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
 
-.burger-btn.is-open .burger-line:nth-child(2) {
+.burger.is-open span:nth-child(2) {
   opacity: 0;
 }
 
-.burger-btn.is-open .burger-line:nth-child(3) {
+.burger.is-open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Мобильное меню */
-.mobile-nav {
-  max-height: 0;
-  overflow: hidden;
-  background-color: var(--color-card);
-  border-top: 1px solid transparent;
-  transition: max-height var(--transition-med), border-color var(--transition-med);
-}
-
-.mobile-nav.is-open {
-  max-height: 400px;
-  border-top: 1px solid var(--color-border);
-}
-
-.mobile-nav-list {
-  padding: 8px 24px 16px;
-}
-
-.mobile-nav-link {
-  display: block;
-  padding: 12px 8px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  border-bottom: 1px solid var(--color-border);
-  transition: color var(--transition-fast);
-}
-
-.mobile-nav-link:hover,
-.mobile-nav-link:focus-visible {
-  color: var(--color-accent);
-}
-
-/* ---------- Hero ---------- */
+/* ---------- 4. Главный экран (hero) ---------- */
 .hero {
-  min-height: 70vh;
+  position: relative;
+  min-height: 92vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 80px 24px;
-  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+  padding-top: 76px;
 }
 
-.hero-inner {
-  max-width: 900px;
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.35;
+  mask-image: radial-gradient(circle at 50% 40%, black 10%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, black 10%, transparent 72%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 24px;
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  font-size: clamp(40px, 7vw, 88px);
+  font-weight: 800;
+  line-height: 1.05;
   letter-spacing: -0.02em;
-  margin-bottom: 20px;
+  max-width: 16ch;
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.35rem);
+  margin-top: 28px;
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--color-text-muted);
   font-weight: 500;
-  color: var(--color-text-secondary);
 }
 
-.hero-divider {
-  width: 120px;
-  height: 3px;
-  background-color: var(--color-accent);
-  margin: 32px auto 0;
+.hero-btn {
+  margin-top: 48px;
 }
 
-/* ---------- Общие секции ---------- */
+/* ---------- 5. Общие стили секций ---------- */
 .section {
-  padding: 96px 24px;
+  padding: var(--gap-section) 0;
 }
 
 .section-alt {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: var(--color-bg-alt);
 }
 
-.section-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.section-title {
-  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
-  margin-bottom: 32px;
-  border-left: 4px solid var(--color-accent);
-  padding-left: 16px;
-}
-
-/* Появление секций при прокрутке */
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in-section.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ---------- Панельная карточка (правила / билеты) ---------- */
-.panel-card {
-  background-color: var(--color-card);
+/* ---------- 6. Раздел «Правила» ---------- */
+.rules-box {
+  background-color: var(--color-bg-alt);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
-  padding: 40px;
-  color: var(--color-text-secondary);
-  font-size: 1.05rem;
+  padding: clamp(28px, 4vw, 56px);
 }
 
-.rules-card {
-  min-height: 160px;
+.rules-box h3 {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  margin-bottom: 24px;
 }
 
-/* ---------- Билеты ---------- */
-.tickets-time-block {
-  margin-top: 28px;
-  padding: 24px;
-  background-color: rgba(20, 120, 249, 0.08);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--radius-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.tickets-time-label {
-  font-size: 0.95rem;
-  color: var(--color-text-secondary);
-  font-weight: 500;
-}
-
-.tickets-time-value {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 800;
+.rules-box h4 {
+  font-size: 17px;
+  font-weight: 700;
   color: var(--color-accent);
+  margin-top: 28px;
+  margin-bottom: 12px;
 }
 
-/* ---------- Сетка плей-офф ---------- */
-.bracket-scroll {
-  overflow-x: auto;
-  padding-bottom: 16px;
+.rules-box h4:first-of-type {
+  margin-top: 0;
 }
 
+.rules-box p {
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.rules-box ul,
+.rules-box ol {
+  margin: 0 0 12px 20px;
+  color: var(--color-text-muted);
+}
+
+.rules-box ul {
+  list-style: disc;
+}
+
+.rules-box ol {
+  list-style: decimal;
+}
+
+.rules-box li {
+  margin-bottom: 6px;
+  padding-left: 4px;
+}
+
+.rules-box strong {
+  color: var(--color-text);
+}
+
+/* ---------- 7. Раздел «Расписание» (турнирная сетка) ---------- */
 .bracket {
   display: flex;
   align-items: center;
   gap: 0;
-  min-width: 960px;
+  overflow-x: auto;
+  padding-bottom: 8px;
 }
 
 .bracket-round {
@@ -338,149 +388,114 @@ button:focus-visible {
   flex-direction: column;
   gap: 24px;
   min-width: 220px;
+  flex-shrink: 0;
 }
 
-.bracket-round-title {
-  font-size: 1.1rem;
-  color: var(--color-text-secondary);
-  text-align: center;
-  margin-bottom: 8px;
+.round-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-bottom: 4px;
 }
 
-.bracket-matches {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.round-label-final {
+  color: var(--color-accent);
+  font-size: 14px;
+}
+
+[data-round="semifinal"] {
   justify-content: space-around;
   height: 100%;
+  gap: 64px;
 }
 
-.bracket-matches-spaced {
-  gap: 120px;
-}
-
-.bracket-matches-final {
-  justify-content: center;
-  height: 100%;
+.bracket-round-final {
+  min-width: 280px;
+  gap: 0;
 }
 
 .match-card {
-  background-color: var(--color-card);
+  background-color: var(--color-bg-alt);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  padding: 18px 20px;
+  transition: border-color var(--t-medium) ease, transform var(--t-medium) ease;
 }
 
 .match-card:hover {
   border-color: var(--color-accent);
-  box-shadow: var(--shadow-md);
 }
 
-.match-team {
+.match-card-final {
+  border-color: var(--color-accent);
+  padding: 28px 24px;
+  background: linear-gradient(180deg, rgba(20,120,249,0.14), var(--color-bg-alt));
+}
+
+.match-teams {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
-}
-
-.match-team-logo {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  flex-shrink: 0;
-}
-
-.match-team-name {
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.match-vs {
-  align-self: center;
-  font-size: 0.75rem;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.match-date {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 4px;
-}
-
-.match-date-final {
-  font-size: 1rem;
   margin-bottom: 12px;
 }
 
-/* Соединительные линии между раундами */
+.match-team {
+  font-size: 14px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.match-team:last-child {
+  text-align: right;
+}
+
+.match-vs {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.match-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  padding-top: 10px;
+}
+
+/* Соединительные линии турнирной сетки */
 .bracket-connectors {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
-  min-width: 60px;
   align-self: stretch;
-  padding: 40px 0;
+  width: 48px;
+  flex-shrink: 0;
 }
 
 .connector {
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-accent);
   position: relative;
-}
-
-.connector-final {
+  height: 2px;
   width: 100%;
+  background-color: var(--color-border);
 }
 
 .bracket-connectors-final {
   justify-content: center;
 }
 
-/* Финал — больше пространства и крупнее карточка */
-.bracket-round-final {
-  min-width: 280px;
+.connector-final {
+  height: 2px;
+  background-color: var(--color-accent);
 }
 
-.bracket-final-label {
-  font-size: 1.6rem;
-  color: var(--color-accent);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.match-card-final {
-  padding: 32px;
-  gap: 20px;
-  border: 2px solid var(--color-accent);
-  box-shadow: var(--shadow-lg);
-}
-
-.match-team-logo-final {
-  width: 48px;
-  height: 48px;
-}
-
-.match-vs-final {
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-/* ---------- Команды ---------- */
+/* ---------- 8. Раздел «Команды» ---------- */
 .teams-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -488,204 +503,282 @@ button:focus-visible {
 }
 
 .team-card {
-  background-color: var(--color-card);
+  background-color: var(--color-bg-alt);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
-  padding: 24px;
-  text-align: center;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  overflow: hidden;
+  transition: transform var(--t-medium) ease, border-color var(--t-medium) ease;
 }
 
 .team-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
   border-color: var(--color-accent);
 }
 
-.team-card-logo {
+.team-figure {
+  padding: 28px 24px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.team-figure img {
   width: 88px;
   height: 88px;
   margin: 0 auto 16px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
+  object-fit: cover;
 }
 
-.team-card-name {
-  font-size: 1.15rem;
-  margin-bottom: 8px;
+.team-name {
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.team-card-stadium,
-.team-card-coach {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  margin-bottom: 4px;
-}
-
-.team-card-players {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--color-border);
-  font-size: 0.88rem;
-  color: var(--color-text-secondary);
+.team-details {
+  padding: 20px 24px 24px;
+  font-size: 13px;
+  color: var(--color-text-muted);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
 }
 
-/* ---------- Контакты ---------- */
-.contacts-buttons {
+.team-details span {
+  color: var(--color-text);
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+/* ---------- 9. Раздел «Билеты» ---------- */
+.tickets-box {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: clamp(28px, 4vw, 56px);
+  max-width: 720px;
+}
+
+.tickets-text {
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.tickets-text:last-child {
+  margin-bottom: 0;
+}
+
+.tickets-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  padding: 24px 28px;
+  margin-bottom: 24px;
+}
+
+.tickets-highlight-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.tickets-highlight-time {
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 800;
+  color: var(--color-accent);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- 10. Раздел «Контакты» ---------- */
+.contacts-grid {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.contact-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex: 1 1 220px;
-  padding: 22px 32px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  border-radius: var(--radius-sm);
+.btn-contact {
+  background-color: var(--color-bg-alt);
   border: 1px solid var(--color-border);
-  background-color: var(--color-card);
-  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  min-width: 220px;
+}
+
+.btn-contact:hover,
+.btn-contact:focus-visible {
+  border-color: var(--color-accent);
+  background-color: var(--color-bg-alt);
+  transform: translateY(-2px) scale(1.02);
 }
 
 .contact-icon {
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
+  color: var(--color-accent);
 }
 
-.contact-btn-telegram:hover,
-.contact-btn-telegram:focus-visible {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-  transform: translateY(-3px);
-}
-
-.contact-btn-discord:hover,
-.contact-btn-discord:focus-visible {
-  background-color: #5865f2;
-  border-color: #5865f2;
-  transform: translateY(-3px);
-}
-
-/* ---------- Подвал ---------- */
+/* ---------- 11. Подвал ---------- */
 .site-footer {
-  padding: 48px 24px;
-  text-align: center;
   border-top: 1px solid var(--color-border);
-  background-color: var(--color-card);
+  padding: 40px 0;
+  background-color: var(--color-bg-alt);
 }
 
-.footer-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 6px;
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
 }
 
-.footer-copyright {
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
-  margin-bottom: 12px;
+.footer-sub {
+  font-size: 13px;
+  color: var(--color-text-muted);
 }
 
-.footer-note {
-  color: var(--color-text-secondary);
-  font-size: 0.85rem;
+/* ---------- 12. Кнопка «наверх» ---------- */
+.to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity var(--t-medium) ease, transform var(--t-medium) ease, background-color var(--t-medium) ease;
+  z-index: 900;
 }
 
-/* =========================================================
-   Адаптивность
-   ========================================================= */
-
-@media (max-width: 900px) {
-  .teams-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-@media (max-width: 768px) {
-  .main-nav {
-    display: none;
-  }
-
-  .burger-btn {
-    display: flex;
-  }
-
-  .section {
-    padding: 64px 20px;
-  }
-
-  .hero {
-    min-height: 60vh;
-    padding: 64px 20px;
-  }
+.to-top:hover {
+  background-color: var(--color-accent-hover);
 }
 
-@media (max-width: 560px) {
-  .teams-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contacts-buttons {
-    flex-direction: column;
-  }
-
-  .panel-card {
-    padding: 24px;
-  }
-
-  .bracket {
-    min-width: 760px;
-  }
-}
-
-/* Уважение к пользователям с уменьшенным движением */
+/* ---------- 13. Анимации ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .fade-in-section,
-  .nav-link::after,
-  .team-card,
-  .contact-btn,
-  .match-card {
+  .reveal {
+    opacity: 1;
+    transform: none;
     transition: none;
   }
 }
-/* ---------- Правила ---------- */
-.rules-content {
-  line-height: 1.8;
+
+/* ---------- 14. Адаптивность ---------- */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .teams-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.rules-content h3 {
-  font-size: 1.3rem;
-  margin-top: 24px;
-  margin-bottom: 16px;
-  color: var(--color-text);
+/* Мобильное меню и общая перестройка */
+@media (max-width: 860px) {
+  .burger {
+    display: flex;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 76px);
+    background-color: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    transform: translateX(100%);
+    transition: transform var(--t-medium) ease;
+  }
+
+  .main-nav.is-open {
+    transform: translateX(0);
+  }
+
+  .main-nav .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 32px;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    font-size: 18px;
+  }
+
+  .bracket {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bracket-round {
+    min-width: 0;
+    width: 100%;
+  }
+
+  [data-round="semifinal"] {
+    gap: 24px;
+  }
+
+  .bracket-connectors,
+  .bracket-connectors-final {
+    width: 2px;
+    height: 32px;
+    align-self: center;
+    flex-direction: row;
+  }
+
+  .connector {
+    width: 2px;
+    height: 100%;
+  }
+
+  .bracket-round-final {
+    min-width: 0;
+  }
 }
 
-.rules-content h3:first-child {
-  margin-top: 0;
-}
+@media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
 
-.rules-content h4 {
-  font-size: 1.05rem;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  color: var(--color-accent);
-  font-weight: 700;
-}
+  .teams-grid {
+    grid-template-columns: 1fr;
+  }
 
-.rules-content p {
-  margin-bottom: 12px;
-  color: var(--color-text-secondary);
-  font-size: 0.95rem;
+  .contacts-grid {
+    flex-direction: column;
+  }
+
+  .btn-contact {
+    width: 100%;
+  }
+
+  .match-teams {
+    flex-wrap: wrap;
+  }
 }
